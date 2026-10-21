@@ -5,13 +5,29 @@ public class Guerreiro extends Personagem {
 
     public Guerreiro(String nome, int vidaMaxima, int forca, int armadura) {
         super(nome, "Guerreiro", vidaMaxima);
+
         this.forca = forca;
         this.armadura = armadura;
     }
 
+    public int getForca() {
+        return forca;
+    }
+
+    public int getArmadura() {
+        return armadura;
+    }
+
     public void golpear() {
         System.out.println(
-                getNome() + " realizou um golpe com força " + forca + "."
+                getNome() + " realizou um golpe com força " + forca + "!"
         );
+    }
+
+    @Override
+    public void exibirEstado() {
+        super.exibirEstado();
+        System.out.println("Força: " + forca);
+        System.out.println("Armadura: " + armadura);
     }
 }

@@ -1,23 +1,50 @@
 public class Arqueiro extends Personagem {
 
-    private int flechas;
+    private int quantidadeFlechas;
     private int precisao;
 
-    public Arqueiro(String nome, int vidaMaxima, int flechas, int precisao) {
+    public Arqueiro(
+            String nome,
+            int vidaMaxima,
+            int quantidadeFlechas,
+            int precisao
+    ) {
         super(nome, "Arqueiro", vidaMaxima);
-        this.flechas = flechas;
+
+        this.quantidadeFlechas = quantidadeFlechas;
         this.precisao = precisao;
     }
 
+    public int getQuantidadeFlechas() {
+        return quantidadeFlechas;
+    }
+
+    public int getPrecisao() {
+        return precisao;
+    }
+
     public void atirar() {
-        if (flechas > 0) {
-            flechas--;
+        if (quantidadeFlechas <= 0) {
             System.out.println(
-                    getNome() + " atirou uma flecha. Precisão: "
-                            + precisao + ". Flechas restantes: " + flechas
+                    getNome() + " não possui flechas para atacar."
             );
-        } else {
-            System.out.println(getNome() + " não tem flechas.");
+            return;
         }
+
+        quantidadeFlechas--;
+
+        System.out.println(
+                getNome() + " atirou uma flecha com precisão "
+                        + precisao
+                        + "! Flechas restantes: "
+                        + quantidadeFlechas
+        );
+    }
+
+    @Override
+    public void exibirEstado() {
+        super.exibirEstado();
+        System.out.println("Flechas: " + quantidadeFlechas);
+        System.out.println("Precisão: " + precisao);
     }
 }

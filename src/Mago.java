@@ -5,19 +5,39 @@ public class Mago extends Personagem {
 
     public Mago(String nome, int vidaMaxima, int mana, int poderMagico) {
         super(nome, "Mago", vidaMaxima);
+
         this.mana = mana;
         this.poderMagico = poderMagico;
     }
 
+    public int getMana() {
+        return mana;
+    }
+
+    public int getPoderMagico() {
+        return poderMagico;
+    }
+
     public void lancarMagia() {
-        if (mana >= 10) {
-            mana -= 10;
+        if (mana < 10) {
             System.out.println(
-                    getNome() + " lançou uma magia com poder "
-                            + poderMagico + ". Mana restante: " + mana
+                    getNome() + " não possui mana suficiente para lançar magia."
             );
-        } else {
-            System.out.println(getNome() + " não tem mana suficiente.");
+            return;
         }
+
+        mana -= 10;
+
+        System.out.println(
+                getNome() + " lançou uma magia com poder " + poderMagico
+                        + "! Mana restante: " + mana
+        );
+    }
+
+    @Override
+    public void exibirEstado() {
+        super.exibirEstado();
+        System.out.println("Mana: " + mana);
+        System.out.println("Poder mágico: " + poderMagico);
     }
 }
